@@ -10,4 +10,14 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function weather(): \Illuminate\View\View
+    {
+        $result = \Forecast::get('53.285322', '34.3450492');
+
+        return view('weather', compact('result'));
+    }
 }
